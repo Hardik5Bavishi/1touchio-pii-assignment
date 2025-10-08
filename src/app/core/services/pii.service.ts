@@ -54,16 +54,11 @@ export class PiiService {
 
   loadPersons(): void {
     this.loading.set(true);
-    this.http.get<Person[]>('/assets/piis.json').subscribe(
-      (data) => {
-        this.persons.set(data);
-        this.loading.set(false);
-      },
-      (error) => {
-        console.error('PiiService: Error loading data:', error);
-        this.loading.set(false);
-      }
-    );
+    this.http.get<Person[]>('/assets/piis.json').subscribe({
+      next: (data) => this.persons.set(data),
+      error: (error) => console.error('PiiService: Error loading data:', error),
+      complete: () => this.loading.set(false), // always called after success
+    });
   }
 
   getPersonById(id: number): Person | undefined {
