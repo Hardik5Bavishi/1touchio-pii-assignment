@@ -1,0 +1,17 @@
+@if (piiEntries.length > 0) {
+<div class="pii-section">
+  <h2>PII Data</h2>
+  <div class="pii-grid">
+    @for (entry of piiEntries; track entry[0]) { @if (entry[1].length) {
+    <div class="pii-category">
+      <h3>{{ entry[0] }}</h3>
+      <div class="pii-items">
+        @for (item of entry[1]; track item) {
+        <div class="pii-item">{{ item }}</div>
+        }
+      </div>
+    </div>
+    } }
+  </div>
+</div>
+}

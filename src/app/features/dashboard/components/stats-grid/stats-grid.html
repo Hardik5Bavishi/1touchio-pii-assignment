@@ -1,0 +1,16 @@
+@if (stats) {
+<div class="stats-grid">
+  <app-stat-card
+    [value]="stats.totalPersons"
+    label="Total Persons"
+  ></app-stat-card>
+  <app-stat-card
+    [value]="stats.totalPiiItems"
+    label="Total PII Items"
+  ></app-stat-card>
+  <app-stat-card
+    [value]="stats.averageDataSources"
+    label="Avg Data Sources"
+  ></app-stat-card>
+</div>
+}

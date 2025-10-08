@@ -1,0 +1,38 @@
+<div class="controls-section">
+  <div>
+    <input
+      type="text"
+      placeholder="Search by name..."
+      [ngModel]="searchQuery()"
+      (ngModelChange)="onSearchChange($event)"
+      class="search-input"
+    />
+  </div>
+
+  <div class="filters-container">
+    <div class="filters-header">
+      <label>Filter by PII Type:</label>
+      <button
+        type="button"
+        class="reset-button"
+        (click)="onResetFilters()"
+        [disabled]="searchQuery() === '' && selectedPiiTypes().length === 0"
+      >
+        Reset Filters
+      </button>
+    </div>
+    <div class="filter-checkboxes">
+      @for (piiType of availablePiiTypes(); track piiType) {
+      <label class="filter-checkbox">
+        <input
+          type="checkbox"
+          [value]="piiType"
+          [checked]="selectedPiiTypes().includes(piiType)"
+          (change)="onPiiTypeFilterChange(piiType, $event)"
+        />
+        {{ piiType }}
+      </label>
+      }
+    </div>
+  </div>
+</div>

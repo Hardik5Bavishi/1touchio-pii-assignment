@@ -1,0 +1,60 @@
+<div class="table-container">
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let element">{{ element?.name }}</td>
+      </ng-container>
+
+      <!-- PII Types Column -->
+      <ng-container matColumnDef="pii_types">
+        <th mat-header-cell *matHeaderCellDef>PII Types</th>
+        <td mat-cell *matCellDef="let element">
+          <div class="pii-types">
+            <div class="pii-types">
+              @for (piiType of getPiiTypesForPerson(element); track piiType) {
+              <span class="pii-type-badge">{{ piiType }}</span>
+              }
+            </div>
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- Data Source Count Column -->
+      <ng-container matColumnDef="data_source_count">
+        <th mat-header-cell *matHeaderCellDef>Data Source Counts</th>
+        <td mat-cell *matCellDef="let element">
+          {{ getDataSourcesCount(element) }}
+        </td>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let element">
+          <a [routerLink]="['/person', element.id]" class="view-details-btn">
+            View Details
+          </a>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <mat-paginator
+      #paginator
+      [pageSizeOptions]="[5, 10, 20]"
+      [pageSize]="10"
+      showFirstLastButtons
+      aria-label="Select page of persons"
+    >
+    </mat-paginator>
+  </div>
+</div>
+
+@if (personsSignal().length === 0) {
+<div class="no-results">
+  <p>No persons found matching your criteria.</p>
+</div>
+}

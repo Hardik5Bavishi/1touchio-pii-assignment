@@ -1,0 +1,24 @@
+<div class="container">
+  <app-person-header
+    [personName]="person()?.name || ''"
+    (goBack)="onGoBack()"
+  ></app-person-header>
+
+  @if (piiService.loading$()) {
+  <div class="loading-container">
+    <mat-spinner diameter="50"></mat-spinner>
+    <p>Loading person details...</p>
+  </div>
+  } @else if (person()) {
+  <div class="detail-content">
+    <app-pii-section [piiEntries]="piiEntries()"></app-pii-section>
+    <app-data-sources-section
+      [dataSources]="person()!.dataSources"
+    ></app-data-sources-section>
+  </div>
+  } @else {
+  <div class="error-message">
+    <h3>No person details found.</h3>
+  </div>
+  }
+</div>

@@ -1,0 +1,37 @@
+.pii-types {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.pii-type-badge {
+  background: #007bff;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.view-details-btn {
+  color: #007bff;
+  text-decoration: none;
+  padding: 4px 8px;
+  border: 1px solid #007bff;
+  border-radius: 4px;
+  font-size: 12px;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.view-details-btn:hover {
+  background: #007bff;
+  color: white;
+}
+
+.loading,
+.no-results {
+  text-align: center;
+  padding: 32px 16px;
+  color: #666;
+}

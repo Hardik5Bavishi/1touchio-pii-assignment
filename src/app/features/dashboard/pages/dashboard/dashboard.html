@@ -1,0 +1,23 @@
+<div class="container">
+  <header class="dashboard-header">
+    <h1>PII Data Management Dashboard</h1>
+  </header>
+
+  <app-stats-grid [stats]="piiService.stats()"></app-stats-grid>
+
+  <app-control-section
+    [(searchQuery)]="searchQuery"
+    [(selectedPiiTypes)]="selectedPiiTypes"
+    [availablePiiTypes]="piiService.availablePiiTypes()"
+    (resetFilters)="onResetFilters()"
+  ></app-control-section>
+
+  @if (piiService.loading$()) {
+  <div class="loading-container">
+    <mat-spinner diameter="50"></mat-spinner>
+    <p>Loading data...</p>
+  </div>
+  } @else {
+  <app-data-table [personsSignal]="filteredPersons"></app-data-table>
+  }
+</div>

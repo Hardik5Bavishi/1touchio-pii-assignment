@@ -1,0 +1,42 @@
+<div class="data-sources-section">
+  <h2>Data Sources</h2>
+  <div class="sources-grid">
+    @if (dataSources.documents.length > 0) {
+    <div class="source-category">
+      <h3>Documents</h3>
+      <div class="source-items">
+        @for (doc of dataSources.documents; track doc) {
+        <div class="source-item">{{ doc }}</div>
+        }
+      </div>
+    </div>
+    } @if (dataSources.databases.length > 0) {
+    <div class="source-category">
+      <h3>Databases</h3>
+      <div class="source-items">
+        @for (db of dataSources.databases; track db) {
+        <div class="source-item">{{ db }}</div>
+        }
+      </div>
+    </div>
+    } @if (dataSources.emails.length > 0) {
+    <div class="source-category">
+      <h3>Emails</h3>
+      <div class="source-items">
+        @for (email of dataSources.emails; track email) {
+        <div class="source-item">{{ email }}</div>
+        }
+      </div>
+    </div>
+    } @if (dataSources.chats.length > 0) {
+    <div class="source-category">
+      <h3>Chats</h3>
+      <div class="source-items">
+        @for (chat of dataSources.chats; track chat) {
+        <div class="source-item">{{ chat }}</div>
+        }
+      </div>
+    </div>
+    }
+  </div>
+</div>
